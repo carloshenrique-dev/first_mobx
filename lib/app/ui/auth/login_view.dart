@@ -30,28 +30,18 @@ class LoginView extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 7, horizontal: 60),
                   child: TextField(
                     onChanged: emailStore.validatePassword,
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.visiblePassword,
                   ),
                 ),
+                Text('${emailStore.status}'),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 7, horizontal: 60),
                   child: Observer(builder: (_) {
                     return ElevatedButton(
-                        onPressed: emailStore.buttonEnabled ? _nextStep : null,
+                        onPressed: emailStore.validado() ? _nextStep : null,
                         child: Text('Email'));
                   }),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 60),
-                  child: Observer(
-                    builder: (_) {
-                      return ElevatedButton(
-                          onPressed: emailStore.password ? _nextStep : null,
-                          child: Text('Senha'));
-                    },
-                  ),
                 ),
               ],
             ),
